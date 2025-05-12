@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Buddy - Home</title>
+  <link rel="stylesheet" href="./assets/styles/style.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header">
+    <nav class="navbar container">
+      <div class="logo">🛍️ SHOPPING-BUDDY</div>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+      <label for="menu-toggle" class="menu-btn">☰</label>
+      <ul class="nav-links">
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./pages/about.html">About</a></li>
+        <li><a href="./pages/services.html">Services</a></li>
+        <li><a href="./pages/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Banner Section -->
+    <section id="hero-banner" class="container">
+      <div class="hero-content">
+        <h1>Welcome to your Shopping Buddy!</h1>
+        <p>Your personal assistant to make shopping easier, smarter, and faster. Save your favorites, and get the best deals all in one place.</p>
+
+        <div class="buttons">
+          <a href="./pages/features.html" class="primary-button">Explore Features</a>
+          <a href="./pages/wishlist.html" class="secondary-button">View Wishlist</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="./assets/images/hero-banner.png" alt="Shopping Buddy Hero Image">
+      </div>
+    </section>
+
+    <!-- Our Products Section -->
+    <section id="products">
+      <div class="services-container container">
+        <div class="services-heading">
+          <h2>Our Products</h2>
+          <p>Explore popular items handpicked for you</p>
+        </div>
+
+        <div class="card-container">
+          <!-- Product Card 1 -->
+          <div class="card">
+            <div class="card-header">
+              <img src="./assets/images/product1.png" alt="Product 1 Image">
+              <h2>Product 1</h2>
+            </div>
+            <div class="card-body">
+              <p>Surf is a laundry detergent brand known for providing effective cleaning and fresh fragrances.</p>
+              <p><strong>Price:</strong> ₱69.00</p>
+            </div>
+            <div class="card-footer">
+              <button class="primary-button add-to-wishlist" data-name="Product 1" data-image="product1.png">Add to Wishlist</button>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div class="card">
+            <div class="card-header">
+              <img src="./assets/images/product2.png" alt="Product 2 Image">
+              <h2>Product 2</h2>
+            </div>
+            <div class="card-body">
+              <p>Tide detergent is a widely recognized brand known for its effective stain removal and cleaning power.</p>
+              <p><strong>Price:</strong> ₱59.00</p>
+            </div>
+            <div class="card-footer">
+              <button class="primary-button add-to-wishlist" data-name="Product 2" data-image="product2.png">Add to Wishlist</button>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div class="card">
+            <div class="card-header">
+              <img src="./assets/images/product3.png" alt="Product 3 Image">
+              <h2>Product 3</h2>
+            </div>
+            <div class="card-body">
+              <p>Ariel is a brand of laundry detergent known for its strong cleaning power and stain removal capabilities.</p>
+              <p><strong>Price:</strong> ₱49.00</p>
+            </div>
+            <div class="card-footer">
+              <button class="primary-button add-to-wishlist" data-name="Product 3" data-image="product3.png">Add to Wishlist</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <p>© 2025 - Shopping Buddy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Wishlist Script -->
+<script>
+  const buttons = document.querySelectorAll('.add-to-wishlist');
+
+  buttons.forEach(btn => {
+    btn.onclick = () => {
+      const name = btn.dataset.name;
+      const image = btn.dataset.image;
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+      if (!wishlist.find(item => item.name === name)) {
+        wishlist.push({ name, image });
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${name} has been added to your wishlist!`);
+      } else {
+        alert(`${name} is already in your wishlist.`);
+      }
+    };
+  });
+</script>
+

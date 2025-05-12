@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Buddy - Wishlist</title>
+  <link rel="stylesheet" href="../assets/styles/style.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+  <nav class="navbar container">
+    <div class="logo">Shopping Buddy</div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle"/>
+    <label for="menu-toggle" class="menu-btn">☰</label>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./features.html">Features</a></li>
+      <li><a href="./wishlist.html">Wishlist</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main>
+  <section id="services">
+    <div class="services-container container">
+      <div class="services-heading">
+        <h2>Your Wishlist</h2>
+        <p>Here are the products you saved</p>
+      </div>
+
+      <div class="card-container" id="wishlist-container">
+        <!-- Wishlist items will be inserted here by JavaScript -->
+      </div>
+
+      <button id="clear-wishlist-btn" class="secondary-button" style="margin-top: 20px;">Clear Wishlist</button>
+
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer id="footer">
+  <div class="container">
+    <p>© 2025 - Shopping Buddy. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Wishlist Script -->
+<script>
+  function loadWishlist() {
+    const container = document.getElementById('wishlist-container');
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    container.innerHTML = '';
+
+    if (wishlist.length === 0) {
+      const emptyCard = document.createElement('div');
+      emptyCard.classList.add('card');
+      emptyCard.innerHTML = `
+        <div class="card-body">
+          <p>Your wishlist is empty. <a href="../index.html">Go back Home</a> to add products.</p>
+        </div>
+      `;
+      container.appendChild(emptyCard);
+      return;
+    }
+
+    wishlist.forEach(item => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+
+      // Fix image path for wishlist.html relative path
+      const imagePath = item.image && item.image !== ""
+        ? "../assets/images/" + item.image
+        : "../assets/images/default.png";
+
+      card.innerHTML = `
+        <div class="card-header">
+          <img src="${imagePath}" alt="${item.name}" style="max-height: 150px; object-fit: contain;">
+          <h2>${item.name}</h2>
+        </div>
+        <div class="card-body">
+          <p>A product you saved in your wishlist.</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function clearWishlist() {
+    localStorage.removeItem('wishlist');
+    loadWishlist();
+    alert('Your wishlist has been cleared.');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadWishlist);
+  document.getElementById('clear-wishlist-btn').addEventListener('click', clearWishlist);
+</script>
+
+</body>
+</html>

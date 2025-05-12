@@ -1,0 +1,27 @@
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card-header img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  padding: 12px 16px;
+}
+
+.card-body {
+  padding: 0 16px 12px;
+}
+
+.card-footer {
+  padding: 12px 16px;
+  text-align: center;
+}
